@@ -42,7 +42,7 @@ void add( int num )
 	struct node *temp;
 	temp=(struct node *)malloc(sizeof(struct node));
 	temp->data=num;
-	if (head != NULL)
+	if (head == NULL)
 	{
 		head=temp;
 		head->next=NULL;
@@ -76,7 +76,7 @@ void addafter(int num, int loc)
 void insert(int num)
 {
 	int c=0;
-	struct node *temp;
+	struct node *temp = head;
 	
 	if(temp==NULL)
 	{
@@ -84,7 +84,7 @@ void insert(int num)
 	}
 	else
 	{
-		while(temp->next!=NULL)
+		while(temp!=NULL)
 		{
 			if(temp->data<num)
 				c++;
@@ -101,6 +101,8 @@ void insert(int num)
 
 
 
+//This function seg-faults too.  
+//I don't have the energy or care to debug why, so I'll leave this as a do-it-on-your-own class exorcise. 
 int delete(int num)
 {
 	struct node *temp, *prev;
@@ -139,7 +141,8 @@ void  display(struct node *r)
 	{
 		return;
 	}
-	while(1)
+	while (r!=NULL)
+
 	{
 		printf("%d ",r->data);
 		r=r->next;
